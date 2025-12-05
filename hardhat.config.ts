@@ -14,18 +14,24 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {},
     // Add other networks if needed
-    sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-      accounts: [SEPOLIA_PRIVATE_KEY],
-    },
-    taiko_hekla: {
-      url: process.env.HEKLA_RPC_URL,
-      accounts: [process.env.TAIKO_PRIVATE_KEY],
+    ...(ALCHEMY_KEY && SEPOLIA_PRIVATE_KEY ? {
+      sepolia: {
+        url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+        accounts: [SEPOLIA_PRIVATE_KEY],
       },
-    scroll_sepolia: {
-      url: `https://scroll-sepolia.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-      accounts: [SEPOLIA_PRIVATE_KEY],
-    },
+    } : {}),
+    ...(process.env.HEKLA_RPC_URL && process.env.TAIKO_PRIVATE_KEY ? {
+      taiko_hekla: {
+        url: process.env.HEKLA_RPC_URL,
+        accounts: [process.env.TAIKO_PRIVATE_KEY],
+      },
+    } : {}),
+    ...(ALCHEMY_KEY && SEPOLIA_PRIVATE_KEY ? {
+      scroll_sepolia: {
+        url: `https://scroll-sepolia.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+        accounts: [SEPOLIA_PRIVATE_KEY],
+      },
+    } : {}),
   },
   etherscan: {
     apiKey: {

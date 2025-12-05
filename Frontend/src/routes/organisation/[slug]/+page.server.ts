@@ -3,9 +3,12 @@ import orgaFactoryAbi from "../../../../../artifacts/contracts/orgaFactory.sol/o
 import ACcontractAbi from "../../../../../artifacts/contracts/orgaFactory.sol/ACcontract.json";
 import { FactoryContractAddress, schemaUID } from '$lib/stores';
 import * as dotenv from "dotenv";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: join(__dirname, '../../../../../.env') });
 const provider = new ethers.JsonRpcProvider(`https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`);
 const orgaFactory = new ethers.Contract(FactoryContractAddress, orgaFactoryAbi.abi, provider);
 
