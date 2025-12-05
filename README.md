@@ -38,6 +38,8 @@ Make sure you have the following installed:
    ```bash
    npm install
    ```
+Note that you have to npm install in both the root directory and Frontend/ directory
+   
 3. Copy the example environment file and configure your settings:
    ```bash
    cp env.example .env
@@ -45,10 +47,11 @@ Make sure you have the following installed:
 
 ### Development
 
-Run the development server:
+Run the development server in the Frontend/ directory :
 ```bash
 npm run dev
 ```
+
 
 ### Deployment
 
